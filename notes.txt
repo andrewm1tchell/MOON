@@ -1,0 +1,1 @@
+forge script ./script/PatinaEngine.s.sol && open output/svg_Cool.html

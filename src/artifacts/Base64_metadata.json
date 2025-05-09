@@ -1,0 +1,51 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Provides a set of functions to operate with Base64 strings.",
+			"kind": "dev",
+			"methods": {},
+			"stateVariables": {
+				"_TABLE": {
+					"details": "Base64 Encoding/Decoding Table See sections 4 and 5 of https://datatracker.ietf.org/doc/html/rfc4648"
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Base64.sol": "Base64"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Base64.sol": {
+			"keccak256": "0xe6f12dab4b26d923fa00a2ac2bc6b9af6bba3c0af5eef958a596a31f5dfe905a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a325b696b139441d55fc0425ccddc84a94a0180870f8d0222f4d56d87b68d8fa",
+				"dweb:/ipfs/Qmc9LunZbjHqNEjereqaLtYvXATnPMeNRzELAtwJvCy9ti"
+			]
+		}
+	},
+	"version": 1
+}

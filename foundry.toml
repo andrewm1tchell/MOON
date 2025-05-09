@@ -1,0 +1,12 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+fs_permissions = [{ access = "write", path = "output" }]
+block_gas_limit = 9223372036854775807
+optimizer = true
+optimizer_runs = 200
+via_ir = true
+stack = 2048
+evm_version = "london" # Or a more recent version
+optimizer_details = { yul = true, yulDetails = { stackAllocation = true } }
