@@ -7,7 +7,7 @@ abstract contract AccessControl {
     mapping(address => bool) private _accessList;
 
     modifier onlyAdmin() {
-        require(msg.sender == _admin, "Not andrew");
+        require(msg.sender == _admin, "Not admin");
         _;
     }
 

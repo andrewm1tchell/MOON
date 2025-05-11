@@ -11,7 +11,6 @@ contract DeployFlipEngine is Script {
 
         vm.startBroadcast(deployerPrivateKey);
         FlipEngine flipEngine = new FlipEngine();
-        console.log("Flip Engine deployed to:", address(extension));
     
         vm.stopBroadcast();
     }

@@ -41,7 +41,7 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
             isOwner() || 
             hasAccess(msg.sender) || 
             msg.sender == IERC721(_creator).ownerOf(tokenId), 
-            "Unauthorized"
+            "Not Authorized"
         );
         _;
     }

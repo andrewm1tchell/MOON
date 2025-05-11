@@ -7,9 +7,9 @@ import {IAWYAExtension} from "../src/IAWYAExtension.sol";
 contract Mint is Script {
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address extensionAddress = 0x947f77832946917B8112280BE3D091Eaa186F353;
+        address extensionAddress = 0xB1fe03cC25B2EefB01f441E72f3cCb5DF667Bd0E;
         address wallet = 0xF1Da6E2d387e9DA611dAc8a7FC587Eaa4B010013;
-        uint256 tokenId = 14;
+        uint256 tokenId = 15;
 
         vm.startBroadcast(deployerPrivateKey);
         
