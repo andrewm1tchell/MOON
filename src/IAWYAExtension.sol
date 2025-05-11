@@ -46,7 +46,7 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
         _;
     }
 
-    constructor(address creator, string memory name, string memory description, address flipEngineAddr) Ownable(msg.sender)
+    constructor(address creator, string memory name, string memory description, address flipEngineAddr)
     {
         _name = name;
         _description = description;
@@ -105,6 +105,10 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
 
     function flip() public onlyAuthorizedAndTokenOwner(_tokenId) {
         flipEngine.flip();
+    }
+
+    function isFlipped() public view returns(bool) {
+        return flipEngine.isFlipped();
     }
 
     function formatTokenURI() public view returns (string memory) {
