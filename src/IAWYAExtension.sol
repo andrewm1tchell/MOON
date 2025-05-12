@@ -72,11 +72,20 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
         require(_totalSupply < _maxSupply, "No more tokens left");
 
         IERC721CreatorCore(_creator).mintExtension(recipient);
+
         _totalSupply++;
     }
 
-    function withdrawAll() public onlyAuthorized {
-        require(payable(msg.sender).send(address(this).balance));
+     function withdrawAll() 
+        public 
+        onlyAuthorized 
+        nonReentrant 
+    {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No balance to withdraw");
+        
+        (bool success, ) = payable(msg.sender).call{value: balance}("");
+        require(success, "Transfer failed");
     }
 
     function setDescription(string memory des) public onlyAuthorized {
@@ -104,15 +113,15 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
     }
 
     function flip() public onlyAuthorizedAndTokenOwner(_tokenId) {
-        flipEngine.flip();
+        flipEngine.flip(_tokenId);
     }
 
     function isFlipped() public view returns(bool) {
-        return flipEngine.isFlipped();
+        return flipEngine.getFlipState(_tokenId);
     }
 
     function formatTokenURI() public view returns (string memory) {
-        string memory imageUri = flipEngine.getImage();
+        string memory imageUri = flipEngine.getImage(_tokenId);
         string memory byteEncoded = Base64.encode(bytes(abi.encodePacked(
             '{"name": "', 
             _name, 
