@@ -1,39 +1,36 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {Script, console} from "forge-std/Script.sol";
-import {IAWYAExtension} from "../src/IAWYAExtension.sol";
+import {Script, console2} from "forge-std/Script.sol";
+import {FlipEngine} from "../src/FlipEngine.sol";
 
 contract AddFirstImage is Script {
-    function run() public {
+    function run(uint256 chunkIndex) public {  // Add chunkIndex parameter
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         
-        // Hardcoded contract address
-        address deployedAddress = 0xB1fe03cC25B2EefB01f441E72f3cCb5DF667Bd0E;
-        IAWYAExtension extension = IAWYAExtension(deployedAddress);
+        address deployedAddress = 0x7B8140763e5046e920fB752ee1A2FBfb45247675;
+        address flipEngineAddress = 0x5fa41D52B044ebD0a9Eda3cdbB75eAE61C1dd345;
+        FlipEngine flipEngine = FlipEngine(flipEngineAddress);
         
         string memory firstImagePath = "src/1.txt";
         string memory firstImageContent = vm.readFile(firstImagePath);
         
-        uint256 chunkSize = 1000;
+        uint256 chunkSize = 5000;
         uint256 contentLength = bytes(firstImageContent).length;
-        console.log("First image length:", contentLength);
         
-        vm.startBroadcast(deployerPrivateKey);
+        require(chunkIndex * chunkSize < contentLength, "Chunk index out of bounds");
         
-        uint256 chunkIndex = 0;
-        for(uint256 i = 0; i < contentLength; i += chunkSize) {
-            uint256 end = i + chunkSize;
-            if(end > contentLength) {
-                end = contentLength;
-            }
-            string memory chunk = substring(firstImageContent, i, end);
-            console.log("Adding first image chunk %d/%d", chunkIndex, contentLength);
-            
-            extension.addFirstImageChunk(chunkIndex, chunk);
-            chunkIndex++;
+        uint256 start = chunkIndex * chunkSize;
+        uint256 end = start + chunkSize;
+        if(end > contentLength) {
+            end = contentLength;
         }
         
+        string memory chunk = substring(firstImageContent, start, end);
+        console2.log("Processing chunk %d", chunkIndex);
+        
+        vm.startBroadcast(deployerPrivateKey);
+        flipEngine.addFirstImageChunk(deployedAddress, 18, chunkIndex, chunk);
         vm.stopBroadcast();
     }
     

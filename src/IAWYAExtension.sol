@@ -9,6 +9,7 @@ import "@manifoldxyz/libraries-solidity/contracts/access/AdminControl.sol";
 import "@manifoldxyz/creator-core-solidity/contracts/extensions/CreatorExtension.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "./IManifoldERC721Edition.sol";
 import "./Base64.sol";
 import "./FlipEngine.sol";
@@ -23,7 +24,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 
 //@artist omentejovem (omentejovem.eth)
 //@developer andrew mitchell (andrewmitchell.eth)
-contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionTokenURI, IManifoldERC721Edition, AccessControl {
+contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionTokenURI, IManifoldERC721Edition, AccessControl, ReentrancyGuard {
     using Strings for uint256;
     using SafeMath for uint256;
     FlipEngine flipEngine;
@@ -102,6 +103,7 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
 
     function setTokenId(uint256 tokenId) public onlyAuthorized {
         _tokenId = tokenId;
+        flipEngine.setFlipEnabled(address(this), _tokenId, true);
     }
     
     function tokenURI(address creator, uint256 tokenId) public view virtual override returns (string memory) {
@@ -110,18 +112,19 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
 
     function setFlipEngine(address flipEngineAddr) public onlyAuthorized {
         flipEngine = FlipEngine(flipEngineAddr);
+        flipEngine.grantAccess(address(this));
     }
 
     function flip() public onlyAuthorizedAndTokenOwner(_tokenId) {
-        flipEngine.flip(_tokenId);
+        flipEngine.flip(address(this), _tokenId);
     }
 
     function isFlipped() public view returns(bool) {
-        return flipEngine.getFlipState(_tokenId);
+        return flipEngine.getFlipState(address(this), _tokenId);
     }
 
     function formatTokenURI() public view returns (string memory) {
-        string memory imageUri = flipEngine.getImage(_tokenId);
+        string memory imageUri = flipEngine.getImage(address(this), _tokenId);
         string memory byteEncoded = Base64.encode(bytes(abi.encodePacked(
             '{"name": "', 
             _name, 

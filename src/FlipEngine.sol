@@ -6,8 +6,8 @@ import "./AccessControl.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 //@developed by andrew mitchell (andrewmitchell.eth)
-contract FlipEngine is AccessControl {
-    // Updated mappings to include contract address
+//A contract that manages double and single state images for multiple contracts and tokens.
+contract FlipEngine is AccessControl, ReentrancyGuard {
     mapping(address => mapping(uint256 => bool)) public isFlipped;
     mapping(address => mapping(uint256 => bool)) public isFlipEnabled;
     
@@ -20,18 +20,18 @@ contract FlipEngine is AccessControl {
     constructor() {
     }
 
-    function setFlipEnabled(address contractAddress, uint256 tokenId, bool enabled) external onlyAdmin {
+    function setFlipEnabled(address contractAddress, uint256 tokenId, bool enabled) external onlyAuthorized {
         isFlipEnabled[contractAddress][tokenId] = enabled;
     }
 
-    function addFirstImageChunk(address contractAddress, uint256 tokenId, uint256 chunkIndex, string calldata chunk) external onlyAdmin {
+    function addFirstImageChunk(address contractAddress, uint256 tokenId, uint256 chunkIndex, string calldata chunk) external onlyAuthorized {
         firstImageChunks[contractAddress][tokenId][chunkIndex] = chunk;
         if (chunkIndex >= firstImageChunkCount[contractAddress][tokenId]) {
             firstImageChunkCount[contractAddress][tokenId] = chunkIndex + 1;
         }
     }
 
-    function addSecondImageChunk(address contractAddress, uint256 tokenId, uint256 chunkIndex, string calldata chunk) external onlyAdmin {
+    function addSecondImageChunk(address contractAddress, uint256 tokenId, uint256 chunkIndex, string calldata chunk) external onlyAuthorized {
         secondImageChunks[contractAddress][tokenId][chunkIndex] = chunk;
         if (chunkIndex >= secondImageChunkCount[contractAddress][tokenId]) {
             secondImageChunkCount[contractAddress][tokenId] = chunkIndex + 1;
