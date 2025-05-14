@@ -10,7 +10,7 @@ contract DeployExtension is Script {
         console.log("Starting deployment...");
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         address creator = 0x11F99A29eE9C18FCC48Ff1dF4Ce931222c6301fc;
-        address flipEngineAddress = 0xC26947E3A0FdA0f304969C0C9D0e66Fa9286B45B;
+        address flipEngineAddress = 0x5fa41D52B044ebD0a9Eda3cdbB75eAE61C1dd345;
 
 
         vm.startBroadcast(deployerPrivateKey);
