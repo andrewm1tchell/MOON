@@ -47,11 +47,8 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
         _;
     }
 
-    constructor(address creator, string memory name, string memory description, address flipEngineAddr)
+    constructor(address flipEngineAddr)
     {
-        _name = name;
-        _description = description;
-        _creator = creator;
         flipEngine = FlipEngine(flipEngineAddr); 
     }
     
@@ -90,6 +87,10 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
 
     function setDescription(string memory des) public onlyAuthorized {
         _description = des;
+    }
+
+    function setCreator(address creator) public onlyAuthorized {
+        _creator = creator;
     }
 
     function setName(string memory name) public onlyAuthorized {

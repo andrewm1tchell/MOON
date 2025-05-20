@@ -9,15 +9,11 @@ contract DeployExtension is Script {
     function run() public {
         console.log("Starting deployment...");
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address creator = 0x11F99A29eE9C18FCC48Ff1dF4Ce931222c6301fc;
-        address flipEngineAddress = 0x3f902bbdeD1C66f3259695f85505273C11bC1146;
+        address flipEngineAddress = 0x457b961794d9F1037C63c3dd09E588Cb93567FAa;
 
 
         vm.startBroadcast(deployerPrivateKey);
         IAWYAExtension extension = new IAWYAExtension(
-            creator,
-            "I Am Where You Aren't",
-            "Description LALALALALA",
             flipEngineAddress
         );
 
