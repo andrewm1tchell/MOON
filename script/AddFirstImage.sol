@@ -8,14 +8,14 @@ contract AddFirstImage is Script {
     function run(uint256 chunkIndex) public {  // Add chunkIndex parameter
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
         
-        address deployedAddress = 0x7B8140763e5046e920fB752ee1A2FBfb45247675;
-        address flipEngineAddress = 0x5fa41D52B044ebD0a9Eda3cdbB75eAE61C1dd345;
+        address deployedAddress = 0x471712732542Ea2b3BB0a7da11B865E328d65E99;
+        address flipEngineAddress = 0x3f902bbdeD1C66f3259695f85505273C11bC1146;
         FlipEngine flipEngine = FlipEngine(flipEngineAddress);
         
         string memory firstImagePath = "src/1.txt";
         string memory firstImageContent = vm.readFile(firstImagePath);
         
-        uint256 chunkSize = 5000;
+        uint256 chunkSize = 8000;
         uint256 contentLength = bytes(firstImageContent).length;
         
         require(chunkIndex * chunkSize < contentLength, "Chunk index out of bounds");
@@ -30,7 +30,7 @@ contract AddFirstImage is Script {
         console2.log("Processing chunk %d", chunkIndex);
         
         vm.startBroadcast(deployerPrivateKey);
-        flipEngine.addFirstImageChunk(deployedAddress, 18, chunkIndex, chunk);
+        flipEngine.addFirstImageChunk(deployedAddress, 19, chunkIndex, chunk);
         vm.stopBroadcast();
     }
     

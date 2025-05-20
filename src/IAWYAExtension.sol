@@ -33,7 +33,7 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
     uint256 private _maxSupply = 1;
     uint256 private _tokenId;
     address private _creator;
-    string private _externalUrl = "https://www.omentejovem.com/";
+    string private _externalUrl = "";
     string private _description = "";
     string private _name = "";
 
@@ -47,13 +47,9 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
         _;
     }
 
-    constructor(address creator, string memory name, string memory description, address flipEngineAddr)
+    constructor(address flipEngineAddr)
     {
-        _name = name;
-        _description = description;
-        _creator = creator;
         flipEngine = FlipEngine(flipEngineAddr); 
-        grantAccess(0xF1Da6E2d387e9DA611dAc8a7FC587Eaa4B010013);
     }
     
     function supportsInterface(bytes4 interfaceId) public view virtual override(AdminControl, CreatorExtension, IERC165) returns (bool) {
@@ -91,6 +87,10 @@ contract IAWYAExtension is AdminControl, CreatorExtension, ICreatorExtensionToke
 
     function setDescription(string memory des) public onlyAuthorized {
         _description = des;
+    }
+
+    function setCreator(address creator) public onlyAuthorized {
+        _creator = creator;
     }
 
     function setName(string memory name) public onlyAuthorized {

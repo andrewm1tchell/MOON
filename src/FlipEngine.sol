@@ -82,16 +82,10 @@ contract FlipEngine is AccessControl, ReentrancyGuard {
     }
 
     function deleteFirstImage(address contractAddress, uint256 tokenId) public onlyAuthorized {
-        for(uint256 i = 0; i < firstImageChunkCount[contractAddress][tokenId]; i++) {
-            delete firstImageChunks[contractAddress][tokenId][i];
-        }
         firstImageChunkCount[contractAddress][tokenId] = 0;
     }
 
     function deleteSecondImage(address contractAddress, uint256 tokenId) public onlyAuthorized {
-        for(uint256 i = 0; i < secondImageChunkCount[contractAddress][tokenId]; i++) {
-            delete secondImageChunks[contractAddress][tokenId][i];
-        }
         secondImageChunkCount[contractAddress][tokenId] = 0;
     }
 

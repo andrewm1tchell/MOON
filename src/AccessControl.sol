@@ -20,11 +20,11 @@ abstract contract AccessControl {
         _admin = msg.sender;
     }
 
-    function grantAccess(address addr) public onlyAdmin {
+    function grantAccess(address addr) public onlyAuthorized {
         _accessList[addr] = true;
     }
 
-    function revokeAccess(address addr) public onlyAdmin {
+    function revokeAccess(address addr) public onlyAuthorized {
         _accessList[addr] = false;
     }
 
