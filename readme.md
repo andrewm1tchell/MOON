@@ -1,8 +1,6 @@
 I Am Where You Aren't
-
-
-
-There are 2 contracts involved in Moon.
+![I_Am_Where_You_Aren't 5](https://github.com/user-attachments/assets/828971b4-4ff5-4275-aa21-059b8b6a9de2)
+![I_Am_Where_You_Aren't 6](https://github.com/user-attachments/assets/6e6cd74d-13bb-4dbf-8a32-3342547554af)
 
 Main Manifold contract containing the NFT:
 
