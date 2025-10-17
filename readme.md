@@ -1,9 +1,4 @@
 MOON, a fully onchain collaboration with artist omentejovem
-<img width="2048" height="1536" alt="image" src="https://github.com/user-attachments/assets/a499366f-bae8-4a77-aba9-cc30f9bb774a" />
-<img width="1000" height="750" alt="image" src="https://github.com/user-attachments/assets/fceb540f-262a-4001-9e07-0f6828963c10" />
-
-
-Main Manifold contract containing the NFT:
 
 View the NFT here:
 https://opensea.io/item/ethereum/0xfda33af4770d844dc18d8788c7bf84accfac79ad/17
@@ -25,4 +20,8 @@ Alternatively you can interact with the token on a webpage on ARWEAVE her:
 https://qbg4okm3bwvjbgrn6hvthh7kdihwrxlzlzfnv2y5o3x4bkoksjyq.ardrive.net/gE3HKZsNqpCaLfHrM5_qGg9o3XleStrrHXbvwKnKknE?
 
 All of the contracts work together to build out the tokenURI JSON object, which is encoded into Base 64 onchain.
+
+<img width="2048" height="1536" alt="image" src="https://github.com/user-attachments/assets/a499366f-bae8-4a77-aba9-cc30f9bb774a" />
+<img width="1000" height="750" alt="image" src="https://github.com/user-attachments/assets/fceb540f-262a-4001-9e07-0f6828963c10" />
+
 
