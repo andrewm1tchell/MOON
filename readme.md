@@ -1,12 +1,14 @@
-MOON, a collaboration with artist omentejovem
+MOON, a fully onchain collaboration with artist omentejovem
 <img width="2048" height="1536" alt="image" src="https://github.com/user-attachments/assets/a499366f-bae8-4a77-aba9-cc30f9bb774a" />
 <img width="1000" height="750" alt="image" src="https://github.com/user-attachments/assets/fceb540f-262a-4001-9e07-0f6828963c10" />
 
 
 Main Manifold contract containing the NFT:
 
+View the NFT here:
+https://opensea.io/item/ethereum/0xfda33af4770d844dc18d8788c7bf84accfac79ad/17
 
-Moon.sol containing the Onchain TokenURI:
+MoonExtension.sol containing the Onchain TokenURI:
 [0xfF4aC906ef9493B4D22248d239e2905DA321574F](https://etherscan.io/address/0xfF4aC906ef9493B4D22248d239e2905DA321574F)
 
 FlipEngine.sol containing the images and the flip functionality:
