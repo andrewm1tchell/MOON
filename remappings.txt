@@ -1,3 +1,0 @@
-@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
-@manifoldxyz/libraries-solidity=lib/libraries-solidity/
-@manifoldxyz/creator-core-solidity=lib/creator-core-solidity/
