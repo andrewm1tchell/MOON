@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Create this as script/upload_chunks.sh
-CHUNK=13
+CHUNK=0
 IMAGE_SIZE=$(wc -c < src/1.txt)
-CHUNK_SIZE=8000
+CHUNK_SIZE=20000
 TOTAL_CHUNKS=$(( ($IMAGE_SIZE + $CHUNK_SIZE - 1) / $CHUNK_SIZE ))
 
 echo "Total chunks to process: $TOTAL_CHUNKS"
